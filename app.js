@@ -10,6 +10,7 @@ var http = require('http');
 var startcycle = require('./routes/startcycle');
 var users = require('./routes/users');
 var logs = require('./routes/logs');
+var onoff = require('onoff')
 
 var app = express();
 
@@ -28,6 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/startcycle', startcycle.router);
 app.use('/users', users);
 app.use('/logs', logs);
+
+app.get('/', function(req,res,next) {
+  res.send('server is responding');
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
